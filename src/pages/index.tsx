@@ -12,7 +12,6 @@ const AppRouter = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       {useRoutes([
-        // puplic route with layout
         {
           path: "/",
           element: <MainLayout />,
@@ -21,13 +20,11 @@ const AppRouter = () => {
             { path: "shop", element: <Shop /> },
           ],
         },
-        // private route
         { path: "/", element: <Auth /> , children: [
           { path: "", element: <MainLayout />, children: [
             { path: "account", element: <Account /> },
           ] },
         ]},
-        // puplic route without layout
         { path: "/sign-in", element: <SignIn /> },
       ])}
     </Suspense>

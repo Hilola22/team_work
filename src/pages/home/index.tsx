@@ -1,6 +1,11 @@
 import { memo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import ProductView from '../../components/product-view/ProductView';
+import Furniture from './components/furniture';
+import Grid from './components/grid';
+import Service from './components/service';
+import Article from './components/article';
+import Newsletter from '../../components/newsletter';
 
 const Home = () => {
   const {data} = useFetch("/products", {limit: 4})
@@ -8,7 +13,12 @@ const Home = () => {
   return (
     <div className="container">
       <h2>Home</h2>
-      <ProductView data={data?.products}/>  
+      <Furniture />
+      <Grid />
+      <ProductView data={data?.products} />
+      <Service />
+      <Article />
+      <Newsletter/>
     </div>
   );
 };
