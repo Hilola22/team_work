@@ -51,7 +51,7 @@ const Grid = () => {
         className="bg-cover bg-center min-h-[284px] p-6 w-full"
         style={{ backgroundImage: `url(${armchair})` }}
       >
-        <div className="flex flex-col h-[497px] w-[311px]">
+        <div className="flex flex-col h-[497px] ">
           <p className="text-[34px] font-semibold">Living Room</p>
           <p className="border-b w-[95px]">Shop Now →</p>
         </div>
@@ -61,7 +61,7 @@ const Grid = () => {
         className="bg-cover bg-center min-h-[284px] p-6 flex items-end"
         style={{ backgroundImage: `url(${wardrobe})` }}
       >
-        <div className="mb-10 h-[180px] w-[311px]">
+        <div className="mb-10">
           <p className="text-[34px] font-semibold mt-30">Bedroom</p>
           <p className="border-b w-[95px]">Shop Now →</p>
         </div>
@@ -71,7 +71,7 @@ const Grid = () => {
         className="bg-cover bg-center min-h-[284px] p-6 flex items-end w-full"
         style={{ backgroundImage: `url(${toster})` }}
       >
-        <div className="mb-10 h-[180px] w-[311px]">
+        <div className="mb-10">
           <p className="text-[34px] font-semibold mt-30">Kitchen</p>
           <p className="border-b w-[95px]">Shop Now →</p>
         </div>
