@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import furniture from "../../../../assets/furniture.png";
 import furniture2 from "../../../../assets/furniture2.jpg";
-import "../../../../index.css"
+import "../../../../index.css";
 const Furniture = () => {
   const [isSmall, setSmall] = useState(window.innerWidth < 600);
 
@@ -59,28 +59,24 @@ const Furniture = () => {
       >
         <SwiperSlide>
           <div className=" shadow-sm">
-            <img className="h-[438px] object-cover" src={furniture} alt="" />
+            <img className="h-[304px] object-cover" src={furniture} alt="" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className=" shadow-sm">
-            <img className="h-[438px] object-cover" src={furniture2} alt="" />
+            <img className="h-[304px] object-cover" src={furniture2} alt="" />
           </div>
         </SwiperSlide>
       </SwiperComponent>
 
-      <div className="flex flex-col mt-[40px] items-center">
-        <div className="w-full">
-          <h3 className="text-[59px] font-semibold text-black text-center">
-            Simply Unique/ Simply Better.
-          </h3>
-        </div>
-        <div className=" flex justify-self-center">
-          <p className=" w-full text-[20px]">
-            <b>3legant</b> is a gift & decorations store based in HCMC, Vietnam.
-            Est since 2019.
-          </p>
-        </div>
+      <div className="flex flex-col items-center text-center mt-8 mb-6 px-4">
+        <h3 className="text-[42px] leading-13 font-semibold text-black">
+          Simply Unique / Simply Better.
+        </h3>
+        <p className="text-[16px] text-gray-700 mt-4 max-w-[480px]">
+          <strong>3legant</strong> is a gift & decorations store based in HCMC,
+          Vietnam. Est since 2019.
+        </p>
       </div>
     </div>
   );

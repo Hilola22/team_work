@@ -46,23 +46,23 @@ const Grid = () => {
       </div>
     </div>
   ) : (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 p-5">
       <div
         className="bg-cover bg-center min-h-[284px] p-6 w-full"
         style={{ backgroundImage: `url(${armchair})` }}
       >
-        <div className="flex flex-col h-[600px]">
+        <div className="flex flex-col h-[497px] w-[311px]">
           <p className="text-[34px] font-semibold">Living Room</p>
           <p className="border-b w-[95px]">Shop Now →</p>
         </div>
       </div>
 
       <div
-        className="bg-cover bg-center min-h-[284px] p-6 flex items-end w-full"
+        className="bg-cover bg-center min-h-[284px] p-6 flex items-end"
         style={{ backgroundImage: `url(${wardrobe})` }}
       >
-        <div className="mb-10">
-          <p className="text-[34px] font-semibold">Bedroom</p>
+        <div className="mb-10 h-[180px] w-[311px]">
+          <p className="text-[34px] font-semibold mt-30">Bedroom</p>
           <p className="border-b w-[95px]">Shop Now →</p>
         </div>
       </div>
@@ -71,8 +71,8 @@ const Grid = () => {
         className="bg-cover bg-center min-h-[284px] p-6 flex items-end w-full"
         style={{ backgroundImage: `url(${toster})` }}
       >
-        <div className="mb-10">
-          <p className="text-[34px] font-semibold">Kitchen</p>
+        <div className="mb-10 h-[180px] w-[311px]">
+          <p className="text-[34px] font-semibold mt-30">Kitchen</p>
           <p className="border-b w-[95px]">Shop Now →</p>
         </div>
       </div>
