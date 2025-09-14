@@ -92,7 +92,7 @@ const Service = () => {
           </div>
           <div className="mt-[16px]">
             <h4 className="text-[20px] font-semibold">24/7 Support</h4>
-            <p className="text-[16px] text-[#6C7275]">
+            <p className="text-[16px] text-[#6C7275] leading-6">
               Phone and Email support
             </p>
           </div>
