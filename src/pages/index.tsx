@@ -1,5 +1,6 @@
 import { lazy, memo, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
+import NotFound from "./not-found";
 
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
@@ -10,7 +11,7 @@ const Auth = lazy(() => import("./auth"));
 
 const AppRouter = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="text-center">Loading...</div>}>
       {useRoutes([
         {
           path: "/",
@@ -20,12 +21,19 @@ const AppRouter = () => {
             { path: "shop", element: <Shop /> },
           ],
         },
-        { path: "/", element: <Auth /> , children: [
-          { path: "", element: <MainLayout />, children: [
-            { path: "account", element: <Account /> },
-          ] },
-        ]},
+        {
+          path: "/",
+          element: <Auth />,
+          children: [
+            {
+              path: "",
+              element: <MainLayout />,
+              children: [{ path: "account", element: <Account /> }],
+            },
+          ],
+        },
         { path: "/sign-in", element: <SignIn /> },
+        { path: "/*", element: <NotFound /> },
       ])}
     </Suspense>
   );

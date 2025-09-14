@@ -8,7 +8,7 @@ import Article from './components/article';
 import Newsletter from '../../components/newsletter';
 
 const Home = () => {
-  const {data} = useFetch("/products", {limit: 4})
+  const {data} = useFetch("/products", {limit: 16})
   
   return (
     <div className="container">
