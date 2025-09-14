@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-py: #F3F5F7;
+  --color-laylo: #f00;
+}
+.container{
+    max-width: 1120px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: content-box;
+}
