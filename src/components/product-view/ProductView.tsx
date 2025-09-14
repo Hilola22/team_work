@@ -9,7 +9,7 @@ const ProductView:FC<IProps> = (props) => {
     const {data} = props
     
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="container mx-auto grid grid-cols-4 gap-6">
         {
             data?.map((item:any) => (
                 <div key={item.id}>

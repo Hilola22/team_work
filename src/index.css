@@ -6,14 +6,14 @@
   --color-py: #f3f5f7;
   --color-laylo: #f00;
 }
-.container {
-  max-width: 1144px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
-  box-sizing: border-box;
+.container{
+    max-width: 1144px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
 }
 .swiper-button-next,
 .swiper-button-prev {
