@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-py: #F3F5F7;
+  --color-py: #f3f5f7;
   --color-laylo: #f00;
 }
 .container{
@@ -14,4 +14,9 @@
     padding-left: 12px;
     padding-right: 12px;
     box-sizing: border-box;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: black !important;
+  border-radius: 50%;
 }
