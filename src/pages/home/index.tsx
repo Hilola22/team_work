@@ -12,7 +12,6 @@ const Home = () => {
   
   return (
     <div className="container">
-      <h2>Home</h2>
       <Furniture />
       <Grid />
       <ProductView data={data?.products} />
