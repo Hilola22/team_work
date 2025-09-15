@@ -1,14 +1,42 @@
 import { memo } from "react";
 import { CiHeart } from "react-icons/ci";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 
 const Detail = () => {
+  const { id } = useParams();
+  const { data } = useFetch(`/products/${id}`);
+
+  let now = new Date();
+  let hour = now.getHours();
+  let day = String(
+    Number(data?.warrantyInformation.split("")[0]) == 1
+      ? data?.warrantyInformation.split("")[2]
+      : Number(data?.warrantyInformation.split("")[0])
+  );
+  let minu = now.getMinutes();
+  let sec = now.getSeconds();
+
+  const averageRating =
+    data?.reviews && data.reviews.length > 0
+      ? data.reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
+        data.reviews.length
+      : 0;
+
   return (
     <div className="my-[50px]">
-      <div className="container  h-[980px] flex gap-8">
+      <div className="container  min-h-[980px] flex gap-8">
         <div className="w-1/2 flex flex-col mb-[60px]">
-          <div className="bg-gray-100 flex-1 flex items-start object-contain justify-start ">
+          <div
+            className="bg-gray-100 flex-1 flex items-start object-contain justify-start "
+            style={{
+              backgroundImage: `url(${data?.thumbnail})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
             <div className="flex text-[20px] flex-col w-[79px] h-[34px] mt-[32px]  ml-[32px] gap-[5px]">
               <button className="font-medium rounded-[4px] bg-white">
                 new
@@ -20,44 +48,32 @@ const Detail = () => {
           </div>
 
           <div className="grid grid-cols-3 gap-5 mt-4 h-[160px]">
-            <img
-              src="https://via.placeholder.com/100"
-              alt="thumb1"
-              className="bg-gray-100"
-            />
-            <img
-              src="https://via.placeholder.com/100"
-              alt="thumb2"
-              className="bg-gray-100"
-            />
-            <img
-              src="https://via.placeholder.com/100"
-              alt="thumb3"
-              className="bg-gray-100"
-            />
+            <img src={data?.images[0]} alt="thumb1" className="bg-gray-100" />
+            <img src={data?.images[1]} alt="thumb2" className="bg-gray-100" />
+            <img src={data?.images[2]} alt="thumb3" className="bg-gray-100" />
           </div>
         </div>
-        <div className="w-1/2 ">
+        <div className="w-1/2">
           <div className="flex items-center gap-[3px] mb-[16px]">
             <FaStar />
             <FaStar />
             <FaStar />
             <FaStar />
             <FaStar />
-            <p className="ml-[10px]">11 reviews</p>
+            <p className="ml-[10px]">{data?.reviews.length} reviews</p>
           </div>
-          <h2 className="size-[40px] w-[300px] font-medium text-[40px] mb-[16px]">
-            Tray Table
+          <h2 className="max-size-[40px] w-[300px] font-medium text-[40px] mb-[16px]">
+            {data?.title}
           </h2>
           <p className="text-[#6C7275] pt-[16px] w-[500px] mb-[16px]">
-            Buy one or buy a few and make every space where you sit more
-            convenient. Light and easy to move around with removable tray top,
-            handy for serving snacks.
+            {data?.description}
           </p>
           <div className="flex gap-[20px] items-center mb-[12px]">
-            <strong className="text-3xl font-normal">$199.00</strong>
+            <strong className="text-3xl font-normal">
+              ${Math.round(data?.price * (1 - data?.discountPercentage / 100))}
+            </strong>
             <strong className="text-[#6C7275] text-2xl font-normal line-through">
-              $400.00
+              ${data?.price}
             </strong>
           </div>
           <hr className="border-gray-100 border-[1px] mb-[12px]" />
@@ -67,27 +83,27 @@ const Detail = () => {
           <div className="flex gap-[20px]">
             <div>
               <div className="bg-gray-100 h-[60px] w-[60px] flex items-center justify-center text-3xl font-medium">
-                02
+                {day}
               </div>
               <p className="text-center text-[13px] text-gray-400">Days</p>
             </div>
             <div>
               <div className="bg-gray-100 h-[60px] w-[60px] flex items-center justify-center text-3xl font-medium">
-                02
+                {hour}
               </div>
-              <p className="text-center text-[13px] text-gray-400">Days</p>
+              <p className="text-center text-[13px] text-gray-400">Hours</p>
             </div>
             <div>
               <div className="bg-gray-100 h-[60px] w-[60px] flex items-center justify-center text-3xl font-medium">
-                02
+                {minu}
               </div>
-              <p className="text-center text-[13px] text-gray-400">Days</p>
+              <p className="text-center text-[13px] text-gray-400">Minutes</p>
             </div>
             <div>
               <div className="bg-gray-100 h-[60px] w-[60px] flex items-center justify-center text-3xl font-medium">
-                02
+                {sec}
               </div>
-              <p className="text-center text-[13px] text-gray-400">Days</p>
+              <p className="text-center text-[13px] text-gray-400">Seconds</p>
             </div>
           </div>
           <hr className="border border-gray-100 my-[26px]" />
@@ -123,11 +139,11 @@ const Detail = () => {
             <hr className="border border-gray-100 my-[15px]" />
             <div>
               <p className="flex gap-[50px]">
-                CKU <strong className="font-medium">1117</strong>
+                CKU <strong className="font-medium">{data?.sku}</strong>
               </p>
               <p className="flex gap-[20px]">
                 Category
-                <strong className="font-medium">Living Room, Bedroom</strong>
+                <strong className="font-medium">{data?.category}</strong>
               </p>
             </div>
           </div>
@@ -144,12 +160,8 @@ const Detail = () => {
         <div className="w-[300px] mb-[30px]">
           <p className="text-[32px] font-normal">Customer Reviews</p>
           <div className="flex items-center mb-[6px] mt-[20px]">
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaRegStar />
-            <p className="ml-[10px] ">11 reviews</p>
+            {averageRating.toFixed(1)} <FaStar />
+            <p className="ml-[10px] ">{data?.reviews.length} reviews</p>
           </div>
           <p className="text-end pr-[43px] font-medium text-gray-800">
             Tray Table
@@ -168,7 +180,9 @@ const Detail = () => {
           </button>
         </form>
         <div className="mt-[50px] justify-between flex items-center">
-          <p className="text-[27px] font-medium">11 reviews</p>
+          <p className="text-[27px] font-medium">
+            {data?.reviews.length} reviews
+          </p>
           <select className="border px-[5px] rounded-[5px] pr-40 py-2 border-gray-300">
             <option>Newest</option>
             <option>Option 2</option>
@@ -176,152 +190,33 @@ const Detail = () => {
           </select>
         </div>
 
-        <div className=" mt-[40px]  h-[74%] flex flex-col gap-[20px] justify-center">
-          <div className="h-[95%] grid grid-rows-6">
-            <div className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200">
-              <div className="bg-cover bg-center rounded-full border flex-[7%] w-[70px] h-[70px]"></div>
-              <div className="flex-[92%]">
-                <p className="font-medium text-[20px]">Sofia Harvetz</p>
-                <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+        <div className=" mt-[40px]   max-h-[74%] flex flex-col gap-[20px] justify-center ">
+          <div className="h-[95%]  grid grid-rows-6 overflow-y-scroll [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {data?.reviews?.map((r: any) => (
+              <div
+                key={`${Date.now()}review`}
+                className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200"
+              >
+                <div className=" bg-cover bg-gray-100 bg-center rounded-full border flex flex-[7%] w-[70px] h-[70px] items-center justify-center">
+                  <p className="text-4xl ">
+                    {r?.reviewerName.split("")[0].toUpperCase()}
+                  </p>
                 </div>
-                <p className="mt-[20px]">
-                  I bought it 3 weeks ago and now come back just to say “Awesome
-                  Product”. I really enjoy it. At vero eos et accusamus et iusto
-                  odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                  deleniti atque corrupt et quas molestias excepturi sint non
-                  provident.
-                </p>
-                <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
-                  <button>Like</button>
-                  <button>Reply</button>
-                </div>
-              </div>
-            </div>
-            <div className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200">
-              <div className="bg-cover bg-center rounded-full border flex-[7%] w-[70px] h-[70px]"></div>
-              <div className="flex-[92%]">
-                <p className="font-medium text-[20px]">Sofia Harvetz</p>
-                <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-                <p className="mt-[20px]">
-                  I bought it 3 weeks ago and now come back just to say “Awesome
-                  Product”. I really enjoy it. At vero eos et accusamus et iusto
-                  odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                  deleniti atque corrupt et quas molestias excepturi sint non
-                  provident.
-                </p>
-                <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
-                  <button>Like</button>
-                  <button>Reply</button>
+                <div className="flex-[92%]">
+                  <p className="font-medium text-[20px]">{r?.reviewerName}</p>
+                  <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
+                    {[...Array(Math.round(r.rating))].map((_, i) => (
+                      <FaStar key={i} style={{ color: "black" }} />
+                    ))}
+                  </div>
+                  <p className="mt-[20px]">{r?.comment}</p>
+                  <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
+                    <button>Like</button>
+                    <button>Reply</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200">
-              <div className="bg-cover bg-center rounded-full border flex-[7%] w-[70px] h-[70px]"></div>
-              <div className="flex-[92%]">
-                <p className="font-medium text-[20px]">Sofia Harvetz</p>
-                <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-                <p className="mt-[20px]">
-                  I bought it 3 weeks ago and now come back just to say “Awesome
-                  Product”. I really enjoy it. At vero eos et accusamus et iusto
-                  odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                  deleniti atque corrupt et quas molestias excepturi sint non
-                  provident.
-                </p>
-                <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
-                  <button>Like</button>
-                  <button>Reply</button>
-                </div>
-              </div>
-            </div>
-            <div className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200">
-              <div className="bg-cover bg-center rounded-full border flex-[7%] w-[70px] h-[70px]"></div>
-              <div className="flex-[92%]">
-                <p className="font-medium text-[20px]">Sofia Harvetz</p>
-                <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-                <p className="mt-[20px]">
-                  I bought it 3 weeks ago and now come back just to say “Awesome
-                  Product”. I really enjoy it. At vero eos et accusamus et iusto
-                  odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                  deleniti atque corrupt et quas molestias excepturi sint non
-                  provident.
-                </p>
-                <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
-                  <button>Like</button>
-                  <button>Reply</button>
-                </div>
-              </div>
-            </div>
-            <div className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200">
-              <div className="bg-cover bg-center rounded-full border flex-[7%] w-[70px] h-[70px]"></div>
-              <div className="flex-[92%]">
-                <p className="font-medium text-[20px]">Sofia Harvetz</p>
-                <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-                <p className="mt-[20px]">
-                  I bought it 3 weeks ago and now come back just to say “Awesome
-                  Product”. I really enjoy it. At vero eos et accusamus et iusto
-                  odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                  deleniti atque corrupt et quas molestias excepturi sint non
-                  provident.
-                </p>
-                <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
-                  <button>Like</button>
-                  <button>Reply</button>
-                </div>
-              </div>
-            </div>
-            <div className=" py-[15px] border flex gap-[40px] border-x-white border-t-white border-b-gray-200">
-              <div className="bg-cover bg-center rounded-full border flex-[7%] w-[70px] h-[70px]"></div>
-              <div className="flex-[92%]">
-                <p className="font-medium text-[20px]">Sofia Harvetz</p>
-                <div className="flex items-center gap-[5px] mb-[6px] mt-[15px]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-                <p className="mt-[20px]">
-                  I bought it 3 weeks ago and now come back just to say “Awesome
-                  Product”. I really enjoy it. At vero eos et accusamus et iusto
-                  odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                  deleniti atque corrupt et quas molestias excepturi sint non
-                  provident.
-                </p>
-                <div className="flex pl-[80px] font-medium gap-[20px] pt-[15px]">
-                  <button>Like</button>
-                  <button>Reply</button>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
           <button className="border w-[200px] block m-auto h-[50px] rounded-3xl">
             Load more
