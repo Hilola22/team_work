@@ -1,14 +1,14 @@
-import { memo, type FC } from "react";
-import { BsArrowRight } from "react-icons/bs";
+import { memo } from "react";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-interface IProps {
-  data: any;
-}
+// interface IProps {
+//   data: any;
+// }
 
-const ProductView: FC<IProps> = (props) => {
-  const { data } = props;
+const ProductView = (props: any) => {
+  const { data, setPage } = props;
   const navigate = useNavigate();
 
   return (
@@ -17,9 +17,12 @@ const ProductView: FC<IProps> = (props) => {
         <h2 className="w-[100px] text-5xl  pl-[20px]  my-[50px]">
           New Arrivalls
         </h2>
-        <p className="mr-[20px] self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
-          More products <BsArrowRight />
-        </p>
+
+        <button className="cursor-pointer mr-[20px] self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
+          <BsArrowLeft onClick={() => setPage((p: number) => p - 1)} /> More
+          products
+          <BsArrowRight onClick={() => setPage((p: number) => p + 1)} />
+        </button>
       </div>
       <div className=" container mt-[20px] mx-auto grid grid-cols-4 gap-6">
         {data?.map((item: any) => (
