@@ -42,7 +42,7 @@ const Furniture = () => {
           Simply Unique/ Simply Better.
         </h3>
         <div className="flex flex-col justify-center">
-          <p className="text-[16px]">
+          <p className="text-[20px]">
             <b>3legant</b> is a gift & decorations store based in HCMC, Vietnam.
             Est since 2019.
           </p>
@@ -69,7 +69,7 @@ const Furniture = () => {
         </SwiperSlide>
       </SwiperComponent>
 
-      <div className="flex flex-col items-center text-center mt-8 mb-6 px-4">
+      <div className="flex flex-col items-center text-center  mt-8 mb-6 px-4">
         <h3 className="text-[42px] leading-13 font-semibold text-black">
           Simply Unique / Simply Better.
         </h3>
