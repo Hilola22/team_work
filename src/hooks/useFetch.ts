@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 
 interface IParams {
-    limit: number
+  limit: number;
 }
 
 export const useFetch = (entpoint: string, params?: IParams) => {
@@ -11,13 +11,13 @@ export const useFetch = (entpoint: string, params?: IParams) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     api
-        .get(entpoint, {params})
-        .then((res) => setData(res.data))
-        .catch(err => setError(err))
-        .finally(() => setLoading(false))
+      .get(entpoint, { params })
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err))
+      .finally(() => setLoading(false));
   }, [entpoint, JSON.stringify(params)]);
 
-  return {data, error, loading}
+  return { data, error, loading };
 };
