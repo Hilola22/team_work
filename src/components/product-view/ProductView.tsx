@@ -13,12 +13,10 @@ const ProductView = (props: any) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <h2 className="w-[100px] text-5xl  pl-[20px]  my-[50px]">
-          New Arrivalls
-        </h2>
+      <div className="flex items-center justify-between container">
+        <h2 className="w-[100px] text-5xl  my-[50px]">New Arrivalls</h2>
 
-        <button className="cursor-pointer mr-[20px] self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
+        <button className="cursor-pointer  self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
           <BsArrowLeft onClick={() => setPage((p: number) => p - 1)} /> More
           products
           <BsArrowRight onClick={() => setPage((p: number) => p + 1)} />
