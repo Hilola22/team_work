@@ -128,8 +128,6 @@ const Detail = () => {
               <p className="flex gap-[20px]">
                 Category
                 <strong className="font-medium">Living Room, Bedroom</strong>
-
-                
               </p>
             </div>
           </div>
