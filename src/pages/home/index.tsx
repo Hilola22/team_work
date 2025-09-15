@@ -11,13 +11,13 @@ const Home = () => {
   const {data} = useFetch("/products", {limit: 4})
   
   return (
-    <div className="container">
+    <div>
       <Furniture />
       <Grid />
       <ProductView data={data?.products} />
       <Service />
       <Article />
-      <Newsletter/>
+      <Newsletter />
     </div>
   );
 };

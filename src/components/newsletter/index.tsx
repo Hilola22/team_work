@@ -3,10 +3,9 @@ import chair from "../../assets/chair.png";
 import shelf from "../../assets/shelf.png";
 import { AiOutlineMail } from "react-icons/ai"; 
 
-
 const NewsLetter = () => {
   return (
-    <section className="relative w-full mt-[80px] bg-[#F2F4F6] min-h-[360px] overflow-hidden flex items-center justify-center">
+    <section className="relative w-[100%] mt-[80px] bg-[#F2F4F6] min-h-[360px] overflow-hidden flex items-center justify-center">
       <img
         className="absolute top-[-160px] left-[-280px] w-[700px] h-auto md:inline-block hidden"
         src={shelf}
@@ -28,7 +27,7 @@ const NewsLetter = () => {
         </p>
 
         <form className="flex items-center justify-center gap-2 border-b border-gray-400 max-w-md mx-auto pb-2">
-          <AiOutlineMail size={20}/>
+          <AiOutlineMail size={20} />
           <input
             type="email"
             placeholder="Email address"

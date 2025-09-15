@@ -43,8 +43,17 @@ const SignIn = () => {
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       <div className="hidden md:flex md:w-1/2 bg-gray-50 flex-col items-center justify-between py-10 px-10">
-        <img src={logo} alt="Logo" className="w-[100px] md:w-[140px]" />
-        <img src={chair} alt="Chair" className="w-full mb-10 ml-[130px]" />
+        <img
+          onClick={() => navigate("/")}
+          src={logo}
+          alt="Logo"
+          className="w-[100px] md:w-[140px]"
+        />
+        <img
+          src={chair}
+          alt="Chair"
+          className="w-fit min-w-[800px] mb-10 ml-[130px]"
+        />
       </div>
 
       <div className="flex md:hidden flex-col items-center justify-center px-4 pt-8">

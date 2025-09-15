@@ -2,12 +2,14 @@ import { lazy, memo, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import NotFound from "./not-found";
 
+
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
 const Shop = lazy(() => import("./shop"));
 const SignIn = lazy(() => import("./sign-in"));
 const Account = lazy(() => import("./account"));
 const Auth = lazy(() => import("./auth"));
+const Blog = lazy(() => import ("./blog"));
 
 const AppRouter = () => {
   return (
@@ -19,6 +21,7 @@ const AppRouter = () => {
           children: [
             { index: true, element: <Home /> },
             { path: "shop", element: <Shop /> },
+            { path: "blog", element: <Blog /> },
           ],
         },
         {
