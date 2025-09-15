@@ -190,8 +190,8 @@ const Detail = () => {
           </select>
         </div>
 
-        <div className=" mt-[40px]  border max-h-[74%] flex flex-col gap-[20px] justify-center">
-          <div className="max-h-[95%] border grid grid-rows-6">
+        <div className=" mt-[40px]   max-h-[74%] flex flex-col gap-[20px] justify-center ">
+          <div className="h-[95%]  grid grid-rows-6 overflow-y-scroll [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {data?.reviews?.map((r: any) => (
               <div
                 key={`${Date.now()}review`}
