@@ -8,6 +8,7 @@ const Shop = lazy(() => import("./shop"));
 const SignIn = lazy(() => import("./sign-in"));
 const Account = lazy(() => import("./account"));
 const Auth = lazy(() => import("./auth"));
+const Detail = lazy(() => import("./detail"));
 
 const AppRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AppRouter = () => {
           children: [
             { index: true, element: <Home /> },
             { path: "shop", element: <Shop /> },
+            { path: "product/:id", element: <Detail /> },
           ],
         },
         {
