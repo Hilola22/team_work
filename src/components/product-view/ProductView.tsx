@@ -13,22 +13,22 @@ const ProductView = (props: any) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <h2 className="w-[100px] text-5xl  pl-[20px]  my-[50px]">
+      <div className="flex items-center justify-between container">
+        <h2 className="w-[100px] text-3xl my-[50px] md:text-5xl">
           New Arrivalls
         </h2>
 
-        <button className="cursor-pointer mr-[20px] self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
+        <button className="cursor-pointer  self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
           <BsArrowLeft onClick={() => setPage((p: number) => p - 1)} /> More
           products
           <BsArrowRight onClick={() => setPage((p: number) => p + 1)} />
         </button>
       </div>
-      <div className=" container mt-[20px] mx-auto grid grid-cols-4 gap-6">
+      <div className=" container mt-[20px] w-[100%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {data?.map((item: any) => (
           <div key={item.id}>
-            <div className="relative">
-              <div className="absolute z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
+            <div className="relative ">
+              <div className="absolute  z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
                 <button className="uppercase font-medium rounded-[4px] bg-white">
                   new
                 </button>
@@ -39,7 +39,7 @@ const ProductView = (props: any) => {
               <div className="relative group">
                 <img
                   onClick={() => navigate(`/products/${item.id}`)}
-                  className="w-[260px] bg-gray-100 h-[350px] object-center object-cover mb-[12px]"
+                  className="min-w-[260px] bg-gray-100 h-[350px] object-center object-cover mb-[12px]"
                   src={item.thumbnail}
                   alt={item.title}
                 />
@@ -75,8 +75,11 @@ const ProductView = (props: any) => {
           </div>
         ))}
       </div>
-      <div className="bg-gray-300">
-        <hr className="mt-[50px] border-2 w-[70%]  rounded-full" />
+      <div className="container w-full">
+        <div className="mt-[50px] flex w-full">
+          <div className="h-[4px] bg-black rounded-3xl w-[70%]"></div>
+          <div className="h-[4px] bg-gray-300 rounded-3xl w-[30%]"></div>
+        </div>
       </div>
     </>
   );
