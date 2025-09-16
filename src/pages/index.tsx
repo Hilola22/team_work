@@ -10,6 +10,7 @@ const SignIn = lazy(() => import("./sign-in"));
 const Account = lazy(() => import("./account"));
 const Auth = lazy(() => import("./auth"));
 const Blog = lazy(() => import ("./blog"));
+const Detail = lazy(() => import("./detail"));
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
             { index: true, element: <Home /> },
             { path: "shop", element: <Shop /> },
             { path: "blog", element: <Blog /> },
+            { path: "products/:id", element: <Detail /> },
           ],
         },
         {
