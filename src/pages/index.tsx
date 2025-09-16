@@ -4,12 +4,15 @@ import NotFound from "./not-found";
 import Logout from "./logout";
 import Cart from "./cart";
 
+
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
 const Shop = lazy(() => import("./shop"));
 const SignIn = lazy(() => import("./sign-in"));
 const Account = lazy(() => import("./account"));
 const Auth = lazy(() => import("./auth"));
+const Blog = lazy(() => import ("./blog"));
+const Detail = lazy(() => import("./detail"));
 
 const AppRouter = () => {
   return (
@@ -23,6 +26,8 @@ const AppRouter = () => {
             { path: "shop", element: <Shop /> },
             { path: "logout", element: <Logout /> },
             { path: "cart", element: <Cart /> },
+            { path: "blog", element: <Blog /> },
+            { path: "products/:id", element: <Detail /> },
           ],
         },
         {

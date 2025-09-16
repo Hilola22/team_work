@@ -1,23 +1,24 @@
-import { memo } from 'react';
-import { useFetch } from '../../hooks/useFetch';
-import ProductView from '../../components/product-view/ProductView';
-import Furniture from './components/furniture';
-import Grid from './components/grid';
-import Service from './components/service';
-import Article from './components/article';
-import Newsletter from '../../components/newsletter';
+import { memo, useState } from "react";
+import { useFetch } from "../../hooks/useFetch";
+import ProductView from "../../components/product-view/ProductView";
+import Furniture from "./components/furniture";
+import Grid from "./components/grid";
+import Service from "./components/service";
+import Article from "./components/article";
+import Newsletter from "../../components/newsletter";
 
 const Home = () => {
-  const {data} = useFetch("/products", {limit: 16})
-  
+  const [page, setPagee] = useState(0);
+  const { data } = useFetch(`/products?limit=4&skip=${page * 4}`);
+
   return (
-    <div className="container">
+    <div>
       <Furniture />
       <Grid />
-      <ProductView data={data?.products} />
+      <ProductView data={data?.products} setPage={setPagee} />
       <Service />
       <Article />
-      <Newsletter/>
+      <Newsletter />
     </div>
   );
 };

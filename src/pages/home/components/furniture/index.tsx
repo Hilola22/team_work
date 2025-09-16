@@ -22,6 +22,7 @@ const Furniture = () => {
       <SwiperComponent
         modules={isSmall ? [Pagination] : [Navigation]}
         navigation
+        loop
         spaceBetween={30}
         className="w-full flex justify-center items-center "
       >

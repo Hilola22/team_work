@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { BsSearch } from "react-icons/bs";
@@ -7,15 +7,26 @@ import shopbag from "../../../assets/shopbag.svg";
 import { LuAlignJustify } from "react-icons/lu";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "text-black font-semibold" : "text-gray-700 hover:text-black";
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
   return (
-    <header>
+    <header className="relative z-50">
       <div className="container max-w-screen-xl mx-auto px-4">
         <nav>
           <div className="flex justify-between items-center py-[18px]">
             <div className="flex items-center gap-3">
-              <button className="md:hidden text-2xl">
+              <button
+                onClick={toggleMenu}
+                className="md:hidden text-2xl focus:outline-none z-50 relative"
+                aria-label="Toggle menu"
+              >
                 <LuAlignJustify size={24} />
               </button>
               <Link to={"/"}>
@@ -34,7 +45,14 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/products"} className={getNavLinkClass}>
+                <NavLink
+                  to="/products"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-black font-semibold"
+                      : "text-gray-700 hover:text-black"
+                  }
+                >
                   Product
                 </NavLink>
               </li>
@@ -44,7 +62,6 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-
             <div className="flex items-center gap-3">
               <Link
                 to="/search"
@@ -71,6 +88,65 @@ const Header = () => {
               </Link>
             </div>
           </div>
+
+          {menuOpen && (
+            <div
+              className="fixed inset-0 bg-black/50 z-40"
+              onClick={() => setMenuOpen(false)}
+            >
+              <div
+                className="absolute top-0 left-0 w-3/4 max-w-xs bg-white h-full p-6 shadow-lg"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ul className="flex flex-col gap-6 mt-14">
+                  <li>
+                    <NavLink
+                      to={"/"}
+                      className={({ isActive }) =>
+                        `${getNavLinkClass({ isActive })} block`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"/shop"}
+                      className={({ isActive }) =>
+                        `${getNavLinkClass({ isActive })} block`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Shop
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"/products"}
+                      className={({ isActive }) =>
+                        `${getNavLinkClass({ isActive })} block`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Product
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"/contact"}
+                      className={({ isActive }) =>
+                        `${getNavLinkClass({ isActive })} block`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Contact Us
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </header>

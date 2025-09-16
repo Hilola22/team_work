@@ -14,7 +14,10 @@ const Grid = () => {
   }, []);
 
   return isSmall == false ? (
-    <div className="grid grid-cols-4 gap-6 w-full container overflow-x-hidden overflow-y-hidden text-black px-4">
+    <div
+      id="products"
+      className="grid grid-cols-4 gap-6 w-full container overflow-x-hidden overflow-y-hidden text-black px-4"
+    >
       <div
         className="col-span-2 row-span-2 bg-cover bg-center min-h-[284px] p-6 w-full"
         style={{ backgroundImage: `url(${armchair})` }}
