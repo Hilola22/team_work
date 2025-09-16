@@ -20,7 +20,7 @@ const Aricle = () => {
       <div className="grid gap-[25px] w-full grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
         <div className="cart">
           <img
-            className="w-[337px] h-[325px] object-cover mb-6"
+            className="min-w-[337px] h-[325px] object-cover mb-6"
             src={article1}
             alt=""
           />
@@ -34,7 +34,7 @@ const Aricle = () => {
         </div>
         <div className="cart">
           <img
-            className="w-[337px] h-[325px] object-cover mb-6"
+            className="min-w-[337px] h-[325px] object-cover mb-6"
             src={article2}
             alt=""
           />
@@ -48,7 +48,7 @@ const Aricle = () => {
         </div>
         <div className="cart">
           <img
-            className="w-[337px] h-[325px] object-cover mb-6"
+            className="min-w-[337px] h-[325px] object-cover mb-6"
             src={article3}
             alt=""
           />
