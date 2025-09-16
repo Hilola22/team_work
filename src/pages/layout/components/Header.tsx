@@ -45,7 +45,14 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/products"} className={getNavLinkClass}>
+                <NavLink
+                  to="/products"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-black font-semibold"
+                      : "text-gray-700 hover:text-black"
+                  }
+                >
                   Product
                 </NavLink>
               </li>

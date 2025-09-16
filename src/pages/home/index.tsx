@@ -12,7 +12,7 @@ const Home = () => {
   const { data } = useFetch(`/products?limit=4&skip=${page * 4}`);
 
   return (
-    <div className="container">
+    <div>
       <Furniture />
       <Grid />
       <ProductView data={data?.products} setPage={setPagee} />

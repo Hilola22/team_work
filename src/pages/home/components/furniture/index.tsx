@@ -22,6 +22,7 @@ const Furniture = () => {
       <SwiperComponent
         modules={isSmall ? [Pagination] : [Navigation]}
         navigation
+        loop
         spaceBetween={30}
         className="w-full flex justify-center items-center "
       >
@@ -42,7 +43,7 @@ const Furniture = () => {
           Simply Unique/ Simply Better.
         </h3>
         <div className="flex flex-col justify-center">
-          <p className="text-[16px]">
+          <p className="text-[18px]">
             <b>3legant</b> is a gift & decorations store based in HCMC, Vietnam.
             Est since 2019.
           </p>
