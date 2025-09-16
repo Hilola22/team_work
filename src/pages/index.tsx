@@ -3,7 +3,9 @@ import { useRoutes } from "react-router-dom";
 import NotFound from "./not-found";
 import Logout from "./logout";
 import Cart from "./cart";
-
+import Info from "./detail/components/Info";
+import Questions from "./detail/components/Questions";
+import Reviews from "./detail/components/Reviews";
 
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
@@ -11,7 +13,7 @@ const Shop = lazy(() => import("./shop"));
 const SignIn = lazy(() => import("./sign-in"));
 const Account = lazy(() => import("./account"));
 const Auth = lazy(() => import("./auth"));
-const Blog = lazy(() => import ("./blog"));
+const Blog = lazy(() => import("./blog"));
 const Detail = lazy(() => import("./detail"));
 
 const AppRouter = () => {
@@ -27,7 +29,25 @@ const AppRouter = () => {
             { path: "logout", element: <Logout /> },
             { path: "cart", element: <Cart /> },
             { path: "blog", element: <Blog /> },
-            { path: "products/:id", element: <Detail /> },
+            {
+              path: "products/:id",
+              element: <Detail />,
+              children: [
+                {
+                  index: true,
+                  element: <Reviews />,
+                },
+                {
+                  path: "questions",
+                  element: <Questions />,
+                },
+
+                {
+                  path: "info",
+                  element: <Info />,
+                },
+              ],
+            },
           ],
         },
         {
