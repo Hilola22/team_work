@@ -5,6 +5,9 @@ import { BsSearch } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import shopbag from "../../../assets/shopbag.svg";
 import { LuAlignJustify } from "react-icons/lu";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../lib";
+import { IoHeartOutline } from "react-icons/io5";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +18,8 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
+  const wishlist = useSelector((state: RootState) => state.wishlist.value);
+  const cart = useSelector((state: RootState) => state.cart.value);
 
   return (
     <header className="relative z-50">
@@ -76,15 +81,25 @@ const Header = () => {
               >
                 <MdOutlineAccountCircle size={24} />
               </Link>
+              <Link to={"/wishlist"} className="flex relative">
+                <IoHeartOutline className="text-2xl mr-[-5px] ml-[-5px] transition-transform duration-200 hover:-translate-y-1" />
+                {!!wishlist.length && (
+                  <div className="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] py-0 px-1 grid place-items-center rounded-full">
+                    {wishlist.length}
+                  </div>
+                )}
+              </Link>
 
               <Link
                 to="/cart"
                 className="flex items-center transition-transform duration-200 hover:-translate-y-1"
               >
                 <img className="size-7 font-bold" src={shopbag} alt="Cart" />
-                <div className="w-5 h-5 flex items-center justify-center bg-black rounded-full text-white text-xs ml-[2px]">
-                  2
-                </div>
+                {!!cart.length && (
+                  <div className="w-5 h-5 flex items-center justify-center bg-black rounded-full text-white text-xs ml-[2px]">
+                    {cart.length}
+                  </div>
+                )}
               </Link>
             </div>
           </div>
