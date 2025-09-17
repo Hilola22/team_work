@@ -129,7 +129,7 @@ const Detail = () => {
               </button>
             </div>
             <button
-              onClick={() => dispatch(addToCart())}
+              onClick={() => dispatch(addToCart(data))}
               className="h-[60px] bg-black w-[100%] mt-[30px] mb-[10px] hover:text-blue-400 hover:border rounded-[8px] text-white text-2xl"
             >
               Add to Cart
