@@ -102,8 +102,8 @@ const ShopCards = () => {
             <button
               onClick={() => setViewMode("grid")}
               className={`p-1 rounded ${
-                viewMode === "grid"
-                  ? "bg-gray-400 text-[20px] text-white "
+                viewMode === "list"
+                  ? "bg-gray-400 text-[20px] text-white"
                   : "hover:bg-gray-100 text-[20px]"
               }`}
             >
@@ -112,8 +112,8 @@ const ShopCards = () => {
             <button
               onClick={() => setViewMode("list")}
               className={`p-1 rounded ${
-                viewMode === "list"
-                  ? "bg-gray-400 text-[20px] text-white"
+                viewMode === "grid"
+                  ? "bg-gray-400 text-[20px] text-white "
                   : "hover:bg-gray-100 text-[20px]"
               }`}
             >
