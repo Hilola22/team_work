@@ -91,11 +91,11 @@ const Header = () => {
 
           {menuOpen && (
             <div
-              className="fixed inset-0 bg-black/50 z-40"
+              className="fixed inset-0 bg-black/50 z-40 "
               onClick={() => setMenuOpen(false)}
             >
               <div
-                className="absolute top-0 left-0 w-3/4 max-w-xs bg-white h-full p-6 py-10 shadow-lg"
+                className="absolute top-0 left-0 w-3/4 max-w-xs bg-white h-full p-6 py-10 shadow-lg transition duration-400"
                 onClick={(e) => e.stopPropagation()}
               >
                 <ul className="flex flex-col gap-6 mt-14">
