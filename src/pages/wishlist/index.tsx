@@ -6,8 +6,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 const WishList = () => {
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
-  const { data, loading } = useFetch("/wishlist")
-
+  const { loading } = useFetch("/wishlist");
 
   return (
     <div className="WishList">
