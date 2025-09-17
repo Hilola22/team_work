@@ -1,33 +1,21 @@
 import { memo } from "react";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { FaStar} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../../lib/features/cartSlice";
 
-// interface IProps {
-//   data: any;
-// }
 
 const ProductView = (props: any) => {
-  const { data, setPage } = props;
-  const dispatch = useDispatch();
+  const { data, viewMode } = props;
   const navigate = useNavigate();
+
+  const gridClass =
+    viewMode === "grid"
+      ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6";
+
 
   return (
     <>
-      <div className="flex items-center justify-between container">
-        <h2 className="w-[100px] text-3xl my-[50px] md:text-5xl">
-          New Arrivalls
-        </h2>
-
-        <button className="cursor-pointer  self-end mb-[40px] pb-[5px]  font-medium flex items-center gap-[15px] border-b underline-offset-8">
-          <BsArrowLeft onClick={() => setPage((p: number) => p - 1)} /> More
-          products
-          <BsArrowRight onClick={() => setPage((p: number) => p + 1)} />
-        </button>
-      </div>
-      <div className=" container mt-[20px] w-[100%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className={`mt-[20px] w-[100%] mx-auto  ${gridClass}`}>
         {data?.map((item: any) => (
           <div key={item.id}>
             <div className="relative ">
@@ -47,7 +35,6 @@ const ProductView = (props: any) => {
                   alt={item.title}
                 />
                 <button
-                  onClick={() => dispatch(addToCart(item))}
                   className="absolute bottom-4 left-1/2 -translate-x-1/2 
                w-[95%] h-[50px] rounded-2xl bg-black text-white 
                opacity-0 translate-y-2
@@ -60,13 +47,12 @@ const ProductView = (props: any) => {
             </div>
 
             <div>
-              {/* <p>{item.rating}</p> */}
-              <div className="flex mb-[10px]">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStarHalfAlt />
-                <FaRegStar />
+              <div className="flex gap-0.5 mb-[10px]">
+                <FaStar size={14} />
+                <FaStar size={14} />
+                <FaStar size={14} />
+                <FaStar size={14} />
+                <FaStar size={14} />
               </div>
               <h3 className="font-bold mb-[10px]">{item.title}</h3>
               <div className="flex gap-[20px]">
@@ -78,12 +64,6 @@ const ProductView = (props: any) => {
             </div>
           </div>
         ))}
-      </div>
-      <div className="container w-full">
-        <div className="mt-[50px] flex w-full">
-          <div className="h-[4px] bg-black rounded-3xl w-[70%]"></div>
-          <div className="h-[4px] bg-gray-300 rounded-3xl w-[30%]"></div>
-        </div>
       </div>
     </>
   );
