@@ -14,7 +14,7 @@ const ProductView = (props: any) => {
   const wishlist = useSelector((state: RootState) => state.wishlist.value);
 
   const gridClass =
-    viewMode === "grid"
+    viewMode !== "grid"
       ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6";
 
@@ -24,12 +24,12 @@ const ProductView = (props: any) => {
         {data?.map((item: any) => (
           <div key={item.id}>
             <div className="relative ">
-              <div className="absolute  z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
+              <div className="absolute z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
                 <button className="uppercase font-medium rounded-[4px] bg-white">
                   new
                 </button>
                 <button className="text-white rounded-[4px] bg-[#38CB89]">
-                  -50%
+                  {item.discountPercentage}%
                 </button>
               </div>
               <div className="relative group">
@@ -74,7 +74,13 @@ const ProductView = (props: any) => {
               </div>
               <h3 className="font-bold mb-[10px]">{item.title}</h3>
               <div className="flex gap-[20px]">
-                <strong className=" ">${item.price}</strong>
+                <strong className=" ">
+                  $
+                  {(
+                    item.price -
+                    (item.price * item.discountPercentage) / 100
+                  ).toFixed(2)}
+                </strong>
                 <strong className="text-gray-400 line-through">
                   ${item.price}
                 </strong>
