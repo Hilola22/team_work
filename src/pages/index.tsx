@@ -1,6 +1,7 @@
 import { lazy, memo, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import NotFound from "./not-found";
+import Contact from "./contact";
 import Logout from "./logout";
 import Cart from "./cart";
 import Info from "./detail/components/Info";
@@ -55,6 +56,8 @@ const AppRouter = () => {
             { path: "logout", element: <Logout /> },
             { path: "cart", element: <Cart /> },
             { path: "blog", element: <Blog /> },
+            { path: "products/:id", element: <Detail /> },
+            { path: "contact", element: <Contact /> },
             {
               path: "products/:id",
               element: <Detail />,

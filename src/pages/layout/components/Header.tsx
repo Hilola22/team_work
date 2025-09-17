@@ -46,14 +46,14 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  to="/products"
+                  to="/blog"
                   className={({ isActive }) =>
                     isActive
                       ? "text-black font-semibold"
                       : "text-gray-700 hover:text-black"
                   }
                 >
-                  Product
+                  Blog
                 </NavLink>
               </li>
               <li>
@@ -123,13 +123,13 @@ const Header = () => {
                   </li>
                   <li>
                     <NavLink
-                      to={"/products"}
+                      to={"/blog"}
                       className={({ isActive }) =>
                         `${getNavLinkClass({ isActive })} block`
                       }
                       onClick={() => setMenuOpen(false)}
                     >
-                      Product
+                      Blog
                     </NavLink>
                   </li>
                   <li>
@@ -141,6 +141,17 @@ const Header = () => {
                       onClick={() => setMenuOpen(false)}
                     >
                       Contact Us
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"/account"}
+                      className={({ isActive }) =>
+                        `${getNavLinkClass({ isActive })} block`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Account
                     </NavLink>
                   </li>
                 </ul>
