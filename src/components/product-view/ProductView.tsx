@@ -1,11 +1,17 @@
 import { memo } from "react";
-import { FaStar} from "react-icons/fa";
+import { FaRegHeart, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { addToCart } from "../../lib/features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLike } from "../../lib/features/wishlistSlice";
+import type { RootState } from "../../lib";
+import { FcLike } from "react-icons/fc";
 
 const ProductView = (props: any) => {
   const { data, viewMode } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state: RootState) => state.wishlist.value);
 
   const gridClass =
     viewMode !== "grid"
@@ -27,13 +33,26 @@ const ProductView = (props: any) => {
                 </button>
               </div>
               <div className="relative group">
-                <img
-                  onClick={() => navigate(`/products/${item.id}`)}
-                  className="min-w-[260px] bg-gray-100 h-[350px] object-center object-cover mb-[12px]"
-                  src={item.thumbnail}
-                  alt={item.title}
-                />
+                <div>
+                  <img
+                    onClick={() => navigate(`/products/${item.id}`)}
+                    className="min-w-[260px] bg-gray-100 h-[350px] object-center object-cover mb-[12px]"
+                    src={item.thumbnail}
+                    alt={item.title}
+                  />
+                  <button
+                    onClick={() => dispatch(toggleLike(item))}
+                    className="absolute top-3 right-3 cursor-pointer p-2.5 rounded-full"
+                  >
+                    {wishlist.some((pro) => pro.id === item.id) ? (
+                      <FcLike />
+                    ) : (
+                      <FaRegHeart />
+                    )}
+                  </button>
+                </div>
                 <button
+                  onClick={() => dispatch(addToCart(item))}
                   className="absolute bottom-4 left-1/2 -translate-x-1/2 
                w-[95%] h-[50px] rounded-2xl bg-black text-white 
                opacity-0 translate-y-2
