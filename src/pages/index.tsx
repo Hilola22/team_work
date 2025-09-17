@@ -1,12 +1,18 @@
 import { lazy, memo, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import NotFound from "./not-found";
+import Contact from "./contact";
 import Logout from "./logout";
 import Cart from "./cart";
 import Info from "./detail/components/Info";
 import Questions from "./detail/components/Questions";
 import Reviews from "./detail/components/Reviews";
+// <<<<<<< HEAD
 import Search from "./search";
+// =======
+import AccountDetails from "./account/components/account-details";
+import Address from "./account/components/address";
+// >>>>>>> 97ba97eb5aa7fced44c6b63d51fde20d544dc881
 
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
@@ -54,7 +60,12 @@ const AppRouter = () => {
             { path: "logout", element: <Logout /> },
             { path: "cart", element: <Cart /> },
             { path: "blog", element: <Blog /> },
+            // <<<<<<< HEAD
             { path: "search", element: <Search /> },
+            // =======
+            { path: "products/:id", element: <Detail /> },
+            { path: "contact", element: <Contact /> },
+            // >>>>>>> 97ba97eb5aa7fced44c6b63d51fde20d544dc881
             {
               path: "products/:id",
               element: <Detail />,
@@ -83,7 +94,22 @@ const AppRouter = () => {
             {
               path: "",
               element: <MainLayout />,
-              children: [{ path: "account", element: <Account /> }],
+              children: [
+                {
+                  path: "account",
+                  element: <Account />,
+                  children: [
+                    {
+                      index: true,
+                      element: <AccountDetails />,
+                    },
+                    {
+                      path: "address",
+                      element: <Address />,
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
