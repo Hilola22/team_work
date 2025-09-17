@@ -1,7 +1,9 @@
 import { memo } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../lib/features/cartSlice";
 
 // interface IProps {
 //   data: any;
@@ -9,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProductView = (props: any) => {
   const { data, setPage } = props;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
@@ -44,6 +47,7 @@ const ProductView = (props: any) => {
                   alt={item.title}
                 />
                 <button
+                  onClick={() => dispatch(addToCart(item))}
                   className="absolute bottom-4 left-1/2 -translate-x-1/2 
                w-[95%] h-[50px] rounded-2xl bg-black text-white 
                opacity-0 translate-y-2
