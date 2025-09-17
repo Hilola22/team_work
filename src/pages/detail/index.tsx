@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
@@ -17,6 +17,7 @@ const Detail = () => {
   let minu = now.getMinutes();
   let sec = now.getSeconds();
 
+
   return (
     <div className="my-[50px]">
       <div className="container  min-h-[980px] flex gap-8">
@@ -30,11 +31,11 @@ const Detail = () => {
             }}
           >
             <div className="flex text-[20px] flex-col w-[79px] h-[34px] mt-[32px]  ml-[32px] gap-[5px]">
-              <button className="font-medium rounded-[4px] bg-white">
+              <button className="font-medium rounded-[4px] bg-white uppercase">
                 new
               </button>
               <button className="text-white rounded-[4px] bg-[#38CB89]">
-                -50%
+                {data?.discountPercentage}%
               </button>
             </div>
           </div>
