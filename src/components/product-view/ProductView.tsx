@@ -19,7 +19,7 @@ const ProductView = (props: any) => {
         {data?.map((item: any) => (
           <div key={item.id}>
             <div className="relative ">
-              <div className="absolute  z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
+              <div className="absolute z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
                 <button className="uppercase font-medium rounded-[4px] bg-white">
                   new
                 </button>
