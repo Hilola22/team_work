@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
