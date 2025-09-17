@@ -1,7 +1,7 @@
 import { lazy, memo, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import NotFound from "./not-found";
-
+import Contact from "./contact";
 
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
@@ -9,7 +9,7 @@ const Shop = lazy(() => import("./shop"));
 const SignIn = lazy(() => import("./sign-in"));
 const Account = lazy(() => import("./account"));
 const Auth = lazy(() => import("./auth"));
-const Blog = lazy(() => import ("./blog"));
+const Blog = lazy(() => import("./blog"));
 const Detail = lazy(() => import("./detail"));
 
 const AppRouter = () => {
@@ -24,6 +24,7 @@ const AppRouter = () => {
             { path: "shop", element: <Shop /> },
             { path: "blog", element: <Blog /> },
             { path: "products/:id", element: <Detail /> },
+            { path: "contact", element: <Contact /> },
           ],
         },
         {

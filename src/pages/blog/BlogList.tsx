@@ -2,6 +2,12 @@ import { memo, useState } from "react";
 import img1 from "../../assets/articele1.jpg";
 import img2 from "../../assets/article2.jpg";
 import img3 from "../../assets/article3.jpg";
+import img4 from "../../assets/img4.png";
+import img5 from "../../assets/img5.png";
+import img6 from "../../assets/img6.png";
+import img7 from "../../assets/img7.png";
+import img8 from "../../assets/img8.png";
+import img9 from "../../assets/img9.png";
 import { PiGridNineFill } from "react-icons/pi";
 import { PiGridFourBold } from "react-icons/pi";
 
@@ -28,19 +34,37 @@ const blogs = [
     id: 4,
     title: "Modern texas home is beautiful and completely kid-friendly",
     date: "October 16, 2023",
-    image: img1,
+    image: img4,
   },
   {
     id: 5,
     title: "Modern texas home is beautiful and completely kid-friendly",
     date: "October 16, 2023",
-    image: img2,
+    image: img5,
   },
   {
     id: 6,
     title: "Modern texas home is beautiful and completely kid-friendly",
     date: "October 16, 2023",
-    image: img3,
+    image: img6,
+  },
+  {
+    id: 7,
+    title: "Modern texas home is beautiful and completely kid-friendly",
+    date: "October 16, 2023",
+    image: img7,
+  },
+  {
+    id: 8,
+    title: "Modern texas home is beautiful and completely kid-friendly",
+    date: "October 16, 2023",
+    image: img8,
+  },
+  {
+    id: 9,
+    title: "Modern texas home is beautiful and completely kid-friendly",
+    date: "October 16, 2023",
+    image: img9,
   },
 ];
 
