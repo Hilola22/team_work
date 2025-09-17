@@ -3,9 +3,6 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-// interface IProps {
-//   data: any;
-// }
 
 const ProductView = (props: any) => {
   const { data, setPage } = props;
@@ -56,7 +53,6 @@ const ProductView = (props: any) => {
             </div>
 
             <div>
-              {/* <p>{item.rating}</p> */}
               <div className="flex mb-[10px]">
                 <FaStar />
                 <FaStar />
@@ -75,12 +71,7 @@ const ProductView = (props: any) => {
           </div>
         ))}
       </div>
-      <div className="container w-full">
-        <div className="mt-[50px] flex w-full">
-          <div className="h-[4px] bg-black rounded-3xl w-[70%]"></div>
-          <div className="h-[4px] bg-gray-300 rounded-3xl w-[30%]"></div>
-        </div>
-      </div>
+     
     </>
   );
 };

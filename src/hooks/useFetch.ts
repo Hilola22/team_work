@@ -3,6 +3,9 @@ import { api } from "../api";
 
 interface IParams {
   limit: number;
+  order: string;
+  skip: number;
+  sortBy: string
 }
 
 export const useFetch = (entpoint: string, params?: IParams) => {
