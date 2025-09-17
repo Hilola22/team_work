@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeToken } from "../../lib/features/authSlice";
 import camera from "../../assets/camera.svg";
 import type { IUser } from "../../types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 const Account = () => {
   const [isSmall, setSmall] = useState(window.innerWidth < 600);
@@ -17,7 +17,6 @@ const Account = () => {
   }, []);
 
   const [user, setUser] = useState<IUser | null>(null);
-  const [showAddress, setShowAddress] = useState(false);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +48,7 @@ const Account = () => {
                   src={user?.image}
                   alt=""
                 />
-                <span className="bg-black rounded-full border-2 border-white w-8 h-8 flex justify-center absolute top-[60px] right-23 sm:right-13">
+                <span className="bg-black rounded-full border-2 border-white w-8 h-8 md:right-6 flex justify-center absolute top-[60px] right-23 sm:right-13">
                   <img className="w-5 " src={camera} alt="" />
                 </span>
               </div>
@@ -61,7 +60,7 @@ const Account = () => {
               {isSmall === false ? (
                 <div>
                   <strong
-                    onClick={() => setShowAddress(false)}
+                    onClick={() => navigate("")}
                     className="cursor-pointer"
                   >
                     Account
@@ -69,14 +68,23 @@ const Account = () => {
                   <hr className="mt-3" />
                   <div className="mt-5 leading-10 font-medium hidden sm:block">
                     <p
-                      onClick={() => setShowAddress(true)}
+                      onClick={() => navigate("address")}
                       className="text-[#6C7275] text-[18px] cursor-pointer hidden sm:block"
                     >
                       Address
                     </p>
-
-                    <p className="text-[#6C7275] text-[18px]">Orders</p>
-                    <p className="text-[#6C7275] text-[18px]">Wishlist</p>
+                    <p
+                      onClick={() => navigate("/cart")}
+                      className="text-[#6C7275] text-[18px]"
+                    >
+                      Cart
+                    </p>
+                    <p
+                      onClick={() => navigate("/wishlist")}
+                      className="text-[#6C7275] text-[18px]"
+                    >
+                      Wishlist
+                    </p>
                     <p
                       onClick={() => navigate("/logout")}
                       className="text-[#6C7275] text-[18px]"
@@ -87,62 +95,20 @@ const Account = () => {
                 </div>
               ) : (
                 <div>
-                  <select
-                    className="w-full text-[#6C7275] text-[18px]"
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      if (value === "account") setShowAddress(false);
-                      if (value === "address") setShowAddress(true);
-                      if (value === "logout") navigate("/logout");
-                    }}
-                  >
+                  <select className="w-full text-[#6C7275] text-[18px]">
                     <option value="account">Account</option>
                     <option value="address">Address</option>
                     <option value="orders">Orders</option>
                     <option value="wishlist">Wishlist</option>
                     <option value="logout">Log Out</option>
                   </select>
-
                   <hr className="mt-3" />
                 </div>
               )}
             </div>
           </div>
           <div className="flex flex-col mt-20 mb-20 sm:mt-0 sm:mb-0">
-            {!showAddress ? (
-              <div className="shadow-lg  md:w-[707px] p-10">
-                <h4 className="text-xl font-medium">Account Details</h4>
-
-                <br />
-                <p className="text-[#6C7275] text-[18px]">First name *</p>
-                <p className="text-[20px]">{user?.firstName}</p>
-                <br />
-                <p className="text-[#6C7275] text-[18px]">Last name *</p>
-                <p className="text-[20px]">{user?.lastName}</p>
-                <br />
-                <p className="text-[#6C7275] text-[18px]">Display name *</p>
-                <p className="text-[20px]">{user?.username}</p>
-                <p className="text-gray-400">
-                  This is how your name will be displayed in the account section
-                  and in reviews
-                </p>
-                <br />
-                <p className="text-[#6C7275] text-[18px]">Email</p>
-                <p className="text-[20px]">{user?.email}</p>
-                <br />
-                <p className="text-[#6C7275] text-[18px]">Password</p>
-                <p className="text-[20px]">{user?.password}</p>
-              </div>
-            ) : (
-              <div className="w-full max-w-3xl bg-white shadow-md rounded-md p-6">
-                <h4 className="text-xl font-medium mb-4">Billing Address</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <p className=" text-gray-900">{user?.firstName}</p>
-                  <p className=" text-gray-900">{user?.phone}</p>
-                  <p className=" text-gray-900">{user?.address?.address}</p>
-                </div>
-              </div>
-            )}
+            <Outlet />
           </div>
         </div>
       </div>

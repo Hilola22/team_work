@@ -15,7 +15,7 @@ const ProductView = (props: any) => {
 
   return (
     <>
-      <div className={`mt-[20px] w-[100%] mx-auto  ${gridClass}`}>
+      <div className={`mt-[20px] w-[100%] mx-auto container ${gridClass}`}>
         {data?.map((item: any) => (
           <div key={item.id}>
             <div className="relative ">
