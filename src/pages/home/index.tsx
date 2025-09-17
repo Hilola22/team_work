@@ -27,7 +27,10 @@ const Home = () => {
           <BsArrowRight onClick={() => setPage((p: number) => p + 1)} />
         </button>
       </div>
-      <ProductView data={data?.products} setPage={setPage} />
+      <ProductView
+        data={data?.products}
+        setPage={setPage}
+      />
       <div className="container w-full">
         <div className="mt-[50px] flex w-full">
           <div className="h-[4px] bg-black rounded-3xl w-[70%]"></div>
