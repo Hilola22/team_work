@@ -4,19 +4,21 @@ import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import { addToCart } from "../../lib/features/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Detail = () => {
   const { id } = useParams();
   const { data } = useFetch(`/products/${id}`);
   const { pathname } = useLocation();
   let path = pathname.split("/").at(-1);
+  const dispatch = useDispatch();
 
   let now = new Date();
   let hour = now.getHours();
   let day = now.getDay();
   let minu = now.getMinutes();
   let sec = now.getSeconds();
-
 
   return (
     <div className="my-[50px]">
@@ -126,7 +128,10 @@ const Detail = () => {
                 Wishlist
               </button>
             </div>
-            <button className="h-[60px] bg-black w-[100%] mt-[30px] mb-[10px] hover:text-blue-400 hover:border rounded-[8px] text-white text-2xl">
+            <button
+              onClick={() => dispatch(addToCart())}
+              className="h-[60px] bg-black w-[100%] mt-[30px] mb-[10px] hover:text-blue-400 hover:border rounded-[8px] text-white text-2xl"
+            >
               Add to Cart
             </button>
             <hr className="border border-gray-100 my-[15px]" />
