@@ -6,6 +6,8 @@ import Cart from "./cart";
 import Info from "./detail/components/Info";
 import Questions from "./detail/components/Questions";
 import Reviews from "./detail/components/Reviews";
+import AccountDetails from "./account/components/account-details";
+import Address from "./account/components/address";
 
 const MainLayout = lazy(() => import("./layout"));
 const Home = lazy(() => import("./home"));
@@ -81,7 +83,22 @@ const AppRouter = () => {
             {
               path: "",
               element: <MainLayout />,
-              children: [{ path: "account", element: <Account /> }],
+              children: [
+                {
+                  path: "account",
+                  element: <Account />,
+                  children: [
+                    {
+                      index: true,
+                      element: <AccountDetails />,
+                    },
+                    {
+                      path: "address",
+                      element: <Address/>,
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
