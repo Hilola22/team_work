@@ -67,7 +67,7 @@ const Cart = () => {
                           <span>{item.title}</span>
                           <button
                             onClick={() => dispatch(removeFromCart(item))}
-                            className=" text-red-700 mt-1"
+                            className=" text-red-700 text-left mt-1"
                           >
                             &#10005; remove
                           </button>

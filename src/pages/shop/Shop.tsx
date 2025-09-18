@@ -57,7 +57,7 @@ const ShopCards = () => {
               htmlFor=""
               className="uppercase text-[16px] font-semibold text-[#6C7275] mb-2 mt-10"
             >
-              Categories
+              Price
             </label>
             <select
               onChange={handleChangeOrder}
@@ -77,7 +77,7 @@ const ShopCards = () => {
               htmlFor=""
               className="uppercase text-[16px] font-semibold text-[#6C7275] mb-2 mt-10"
             >
-              Price
+              Categories
             </label>
             <select
               onChange={handleChangeCategory}
@@ -100,9 +100,9 @@ const ShopCards = () => {
 
           <div className="hidden sm:flex gap-2 ml-3">
             <button
-              onClick={() => setViewMode("grid")}
+              onClick={() => setViewMode("list")}
               className={`p-1 rounded ${
-                viewMode === "grid"
+                viewMode === "list"
                   ? "bg-gray-400 text-[20px] text-white "
                   : "hover:bg-gray-100 text-[20px]"
               }`}
@@ -110,9 +110,9 @@ const ShopCards = () => {
               <PiGridNineFill />
             </button>
             <button
-              onClick={() => setViewMode("list")}
+              onClick={() => setViewMode("grid")}
               className={`p-1 rounded ${
-                viewMode === "list"
+                viewMode === "grid"
                   ? "bg-gray-400 text-[20px] text-white"
                   : "hover:bg-gray-100 text-[20px]"
               }`}

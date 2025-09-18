@@ -1,17 +1,22 @@
 import { memo } from "react";
-import { FaStar} from "react-icons/fa";
+import { FaRegHeart, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { addToCart } from "../../lib/features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLike } from "../../lib/features/wishlistSlice";
+import type { RootState } from "../../lib";
+import { FcLike } from "react-icons/fc";
 
 const ProductView = (props: any) => {
   const { data, viewMode } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state: RootState) => state.wishlist.value);
 
   const gridClass =
-    viewMode === "grid"
+    viewMode !== "grid"
       ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6";
-
 
   return (
     <>
@@ -19,22 +24,35 @@ const ProductView = (props: any) => {
         {data?.map((item: any) => (
           <div key={item.id}>
             <div className="relative ">
-              <div className="absolute  z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
+              <div className="absolute z-40 flex text-[20px] flex-col w-[79px] h-[34px] mt-[25px]  ml-[20px] gap-[10px]">
                 <button className="uppercase font-medium rounded-[4px] bg-white">
                   new
                 </button>
                 <button className="text-white rounded-[4px] bg-[#38CB89]">
-                  -50%
+                  {item.discountPercentage}%
                 </button>
               </div>
               <div className="relative group">
-                <img
-                  onClick={() => navigate(`/products/${item.id}`)}
-                  className="min-w-[260px] bg-gray-100 h-[350px] object-center object-cover mb-[12px]"
-                  src={item.thumbnail}
-                  alt={item.title}
-                />
+                <div>
+                  <img
+                    onClick={() => navigate(`/products/${item.id}`)}
+                    className="min-w-[260px] bg-gray-100 h-[350px] object-center object-cover mb-[12px]"
+                    src={item.thumbnail}
+                    alt={item.title}
+                  />
+                  <button
+                    onClick={() => dispatch(toggleLike(item))}
+                    className="absolute top-3 right-3 cursor-pointer p-2.5 rounded-full"
+                  >
+                    {wishlist.some((pro) => pro.id === item.id) ? (
+                      <FcLike />
+                    ) : (
+                      <FaRegHeart />
+                    )}
+                  </button>
+                </div>
                 <button
+                  onClick={() => dispatch(addToCart(item))}
                   className="absolute bottom-4 left-1/2 -translate-x-1/2 
                w-[95%] h-[50px] rounded-2xl bg-black text-white 
                opacity-0 translate-y-2
@@ -56,7 +74,13 @@ const ProductView = (props: any) => {
               </div>
               <h3 className="font-bold mb-[10px]">{item.title}</h3>
               <div className="flex gap-[20px]">
-                <strong className=" ">${item.price}</strong>
+                <strong className=" ">
+                  $
+                  {(
+                    item.price -
+                    (item.price * item.discountPercentage) / 100
+                  ).toFixed(2)}
+                </strong>
                 <strong className="text-gray-400 line-through">
                   ${item.price}
                 </strong>

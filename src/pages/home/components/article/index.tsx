@@ -17,10 +17,10 @@ const Aricle = () => {
           More Articles <FaArrowRight />
         </Link>
       </div>
-      <div className="grid gap-[25px] w-full grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+      <div className="grid gap-[25px] w-full grid-cols-1 lg:grid-cols-3 md:grid-cols-2 place-items-center">
         <div className="cart">
           <img
-            className="min-w-[337px] h-[325px] object-cover mb-6"
+            className="max-w-[340px] h-[315px] object-cover mb-6"
             src={article1}
             alt=""
           />
