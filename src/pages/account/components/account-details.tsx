@@ -26,7 +26,6 @@ const AccountDetails = () => {
       <div className="flex container flex-col mt-20 mb-20 sm:mt-0 sm:mb-0">
         <div className="shadow-lg  md:w-[100%] p-10">
           <h4 className="text-xl font-medium">Account Details</h4>
-
           <br />
           <p className="text-[#6C7275] text-[18px]">First name *</p>
           <p className="text-[20px]">{user?.firstName}</p>
@@ -43,9 +42,7 @@ const AccountDetails = () => {
           <br />
           <p className="text-[#6C7275] text-[18px]">Email</p>
           <p className="text-[20px]">{user?.email}</p>
-          <br />
-          <p className="text-[#6C7275] text-[18px]">Password</p>
-          <p className="text-[20px]">{user?.password}</p>
+          <br />{" "}
         </div>
       </div>
     </div>
